@@ -23,7 +23,7 @@ class Team(db.Model, SerializerMixin):
     sport = db.Column(db.String, nullable=False)
     founding_year = db.Column(db.Integer)
     # player_id = db.Column(db.Integer, db.ForeignKey('players.id'))
-    # players = db.relationship("Player", backref="teams")
+    players = db.relationship("Player", backref="teams")
     serialze_rules = ('-players.teams')
 
     @validates('sport')
@@ -55,7 +55,8 @@ class Manager(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     # player_id = db.Column(db.Integer, db.ForeignKey('players.id'))
     players = db.relationship("Player", backref='managers')
-    serialize_rules = ('-players.managers')
+    # serialize_rules = ('-players.managers')
+    # We don't know WHY the serialize_rules broke this code. But now wer are up and running
 
     @validates('name')
     def check_length(self, key, value):

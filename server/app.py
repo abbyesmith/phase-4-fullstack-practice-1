@@ -34,6 +34,7 @@ class All_Teams(Resource):
             all_teams_return.append(team.to_dict())
         res = make_response(jsonify(all_teams_return),200)
         return res
+api.add_resource(All_Teams, '/teams')
 
 
 class All_Players(Resource):
